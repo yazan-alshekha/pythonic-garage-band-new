@@ -1,5 +1,5 @@
 import pytest
-
+import json
 from pythonic_garage_band.band import *
 
 
@@ -53,11 +53,11 @@ def test_bassist_repr():
     assert actual == expected
 
 
-# # @pytest.mark.skip("todo")
-# def test_band_name():
-#     nirvana = Band("Nirvana", [])
+# @pytest.mark.skip("todo")
+def test_band_name():
+    nirvana = Band("Nirvana", [])
 
-#     assert nirvana.name == "Nirvana"
+    assert nirvana.name == "Nirvana"
 
 
 # @pytest.mark.skip("todo")
@@ -100,48 +100,49 @@ def test_individual_solos(one_band):
             assert member.play_solo() == "rattle boom crash"
 
 
-# # @pytest.mark.skip("todo")
-# def test_band_members(one_band):
+# @pytest.mark.skip("todo")
+def test_band_members(one_band):
 
-#     assert len(one_band.members) == 3
+    assert len(one_band.members) == 3
 
-#     assert isinstance(one_band.members[0], Musician)
-#     assert isinstance(one_band.members[0], Guitarist)
-#     assert one_band.members[0].name == "Kurt Cobain"
+    assert isinstance(one_band.members[0], Musician)
+    assert isinstance(one_band.members[0], Guitarist)
+    assert one_band.members[0].name == "Kurt Cobain"
 
-#     assert isinstance(one_band.members[1], Musician)
-#     assert isinstance(one_band.members[1], Bassist)
-#     assert one_band.members[1].name == "Krist Novoselic"
+    assert isinstance(one_band.members[1], Musician)
+    assert isinstance(one_band.members[1], Bassist)
+    assert one_band.members[1].name == "Krist Novoselic"
 
-#     assert isinstance(one_band.members[2], Musician)
-#     assert isinstance(one_band.members[2], Drummer)
-#     assert one_band.members[2].name == "Dave Grohl"
-
-
-# # @pytest.mark.skip("todo")
-# def test_play_solos_for_whole_band(one_band):
-#     solos = one_band.play_solos()
-#     assert len(solos) == 3
-#     assert solos[0] == "face melting guitar solo"
-#     assert solos[1] == "bom bom buh bom"
-#     assert solos[2] == "rattle boom crash"
+    assert isinstance(one_band.members[2], Musician)
+    assert isinstance(one_band.members[2], Drummer)
+    assert one_band.members[2].name == "Dave Grohl"
 
 
-# # @pytest.mark.skip("todo")
-# def test_class_tracks_instances():
-#     assert Band.to_list() == []
-#     the_nobodies = Band("The Nobodies", [])
-#     assert len(Band.instances) == 1
-#     assert Band.instances[0] == the_nobodies
+# @pytest.mark.skip("todo")
+def test_play_solos_for_whole_band(one_band):
+    solos = one_band.play_solos()
+    assert len(solos) == 3
+    assert solos[0] == "face melting guitar solo"
+    assert solos[1] == "bom bom buh bom"
+    assert solos[2] == "rattle boom crash"
 
 
-# # @pytest.mark.skip("todo")
-# def test_to_list():
-#     assert Band.to_list() == []
-#     the_nobodies = Band("The Nobodies", [])
-#     all_bands = Band.to_list()
-#     assert len(all_bands) == 1
-#     assert all_bands[0] == the_nobodies
+# @pytest.mark.skip("todo")
+def test_class_tracks_instances():
+    assert Band.to_list() == []
+    the_nobodies = Band("The Nobodies", [])
+    assert len(Band.instances) == 1
+    assert Band.instances[0] == the_nobodies
+
+
+# @pytest.mark.skip("todo")
+def test_to_list():
+    assert Band.to_list() == []
+    the_nobodies = Band("The Nobodies", [])
+    all_bands = Band.to_list()
+    assert len(all_bands) == 1
+    assert all_bands[0] == the_nobodies
+    # print(all_bands[0])
 
 
 # #######################
@@ -149,16 +150,16 @@ def test_individual_solos(one_band):
 # #######################
 
 
-# @pytest.fixture
-# def nirvana_data():
-#     return {
-#         "name": "Nirvana",
-#         "members": [
-#             {"name": "Kurt Cobain", "instrument": "Guitar"},
-#             {"name": "Krist Novoselic", "instrument": "Bass"},
-#             {"name": "Dave Grohl", "instrument": "Drums"},
-#         ],
-#     }
+@pytest.fixture
+def nirvana_data():
+    return {
+        "name": "Nirvana",
+        "members": [
+            {"name": "Kurt Cobain", "instrument": "Guitar"},
+            {"name": "Krist Novoselic", "instrument": "Bass"},
+            {"name": "Dave Grohl", "instrument": "Drums"},
+        ],
+    }
 
 
 @pytest.fixture
@@ -174,15 +175,15 @@ def one_band():
     return some_band
 
 
-# @pytest.fixture(autouse=True)
-# def clean():
-#     """runs before each test automatically.
-#     This is necessary because otherwise band instances added in one test
-#     will bleed over to other tests
-#     There's also a more advanced way to run code after each test as well
-#     Check the docs for that. Hint: it uses yield
-#     """
-#     Band.instances = []
+@pytest.fixture(autouse=True)
+def clean():
+    """runs before each test automatically.
+    This is necessary because otherwise band instances added in one test
+    will bleed over to other tests
+    There's also a more advanced way to run code after each test as well
+    Check the docs for that. Hint: it uses yield
+    """
+    Band.instances = []
 
 
 #######################
@@ -193,9 +194,10 @@ def one_band():
 # @pytest.mark.skip("stretch")
 # def test_from_file():
 #     with open("assets/bands.json") as f:
-#         bands = json.loads(f.read())
-
-#     assert len(bands) == 1
+#         # bands = json.loads(f.read())
+#         bands = f.read()
+#     # print(bands)
+#     assert len(bands) == 0
 
 #     nirvana_data = bands[0]
 

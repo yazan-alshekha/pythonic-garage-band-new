@@ -20,10 +20,13 @@ class Musician():
     def play_solo(self):
         pass
 
+
 class Band(Musician):
+    instances=[]
     def __init__(self,name,list):
         self.name=name
         self.members=list
+        Band.instances.append(self)
     def play_solos():
         pass
 
@@ -32,18 +35,18 @@ class Band(Musician):
 
     def __repr__(self):
         pass
-
+    
     @classmethod
-    def to_list():
-        return members
-
-    def play_solo(self):
-        pass    
+    def to_list(cls):
+        return cls.instances
 
 
-    @classmethod    
-    def to_list(self):
-        pass
+    def play_solos(self):
+        soloArray=[]
+        for i in self.members:
+            soloArray.append(i.play_solo())
+        return soloArray    
+
 
 
 
